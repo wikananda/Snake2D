@@ -3,7 +3,6 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField] Collider2D arena;
-
     private void Start()
     {
         SpawnFood();

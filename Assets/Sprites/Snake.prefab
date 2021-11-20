@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6808839829432998798}
   - component: {fileID: 6808839829432998799}
   - component: {fileID: 6808839829432998792}
+  - component: {fileID: 2070259531332467713}
   - component: {fileID: 6808839829432998793}
   - component: {fileID: 6808839829432998794}
   m_Layer: 0
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6808839829432998792
@@ -97,7 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1375f65f38a685c44b4520dc5409be89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segment: {fileID: 0}
   rigid: {fileID: 6808839829432998794}
+  manageScore: {fileID: 0}
+--- !u!114 &2070259531332467713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808839829432998795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc2c5960f7978e45a47d40dca5da9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textScore: {fileID: 0}
 --- !u!61 &6808839829432998793
 BoxCollider2D:
   m_ObjectHideFlags: 0
