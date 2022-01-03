@@ -6,6 +6,7 @@ public class Snake : MonoBehaviour
     enum State
     {
         Normal,
+        Pause,
         GameOver
     }
     State state;
@@ -28,16 +29,25 @@ public class Snake : MonoBehaviour
 
     private void Update()
     {
-        if (state == State.GameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                ResetGame();
-                Debug.Log("Reset");
-            }
-            return;
-        }
         Control();
+        switch (state)
+        {
+            case State.GameOver:
+                manageScore.FinalResult();
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    ResetGame();
+                    Debug.Log("Reset");
+                }
+                return;
+            case State.Pause:
+                manageScore.Pause();
+                break;
+            case State.Normal:
+                manageScore.Unpause();
+                break;
+
+        }
     }
 
     private void FixedUpdate()
@@ -55,8 +65,6 @@ public class Snake : MonoBehaviour
                     0
                 );
                 transform.position = targetPos;
-                break;
-            case State.GameOver:
                 break;
         }
 
@@ -85,6 +93,20 @@ public class Snake : MonoBehaviour
             dir = Vector2.right;
         }
         lastDir = dir;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (state == State.Pause)
+            {
+                state = State.Normal;
+                return;
+            }
+            if (state == State.GameOver)
+            {
+                return;
+            }
+            state = State.Pause;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -95,12 +117,11 @@ public class Snake : MonoBehaviour
         }
         else if (other.tag == "Obstacle")
         {
-            manageScore.FinalResult();
             state = State.GameOver;
         }
     }
 
-    void ResetGame()
+    public void ResetGame()
     {
         state = State.Normal;
         for (int i = 1; i < snakeSegments.Count; i++)
